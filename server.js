@@ -37,7 +37,7 @@ app.post('/parse', (req, res) => {
 
     const mappedResult = mapCalculationsToFields({ categories: retunValue });
 
-    res.json({ categories: mappedResult });
+    res.json(mappedResult);
     //console.log({ categories: filteredResult });
   } catch (error) {
     console.log(error);
