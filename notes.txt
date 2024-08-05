@@ -16,6 +16,7 @@ Field "fieldname2"
 DataType number
 Mandatory true
 Hidden false
+Value "calc1"
 
 endcategory
 

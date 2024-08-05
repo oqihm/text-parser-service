@@ -35,7 +35,9 @@ app.post('/parse', (req, res) => {
 
     const retunValue = removeEmptyItems(filteredResult);
 
-    res.json({ categories: retunValue });
+    const mappedResult = mapCalculationsToFields({ categories: retunValue });
+
+    res.json({ categories: mappedResult });
     //console.log({ categories: filteredResult });
   } catch (error) {
     console.log(error);
@@ -95,4 +97,26 @@ function clean(col) {
   });
 
   return flattened;
+}
+
+function mapCalculationsToFields(config) {
+  const calculationsMap = new Map();
+  config.categories.forEach(category => {
+    if (category.type === 'Calculations') {
+      category.calculations.forEach(calc => {
+        calculationsMap.set(calc.name, calc.value);
+      });
+    }
+  });
+
+  config.categories.forEach(category => {
+    if (category.type === 'Fields') {
+      category.fields.forEach(field => {
+        if (field.value && calculationsMap.has(field.value)) {
+          field.value = calculationsMap.get(field.value);
+        }
+      });
+    }
+  });
+  return config;
 }
