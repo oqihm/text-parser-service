@@ -32,11 +32,12 @@ fieldList
     }
 
 field
-  = "Field" _ "\"" name:fieldName "\"" _ "DataType" _ dataType:dataType _ "Mandatory" _ mandatory:boolean _ list:list? {
+  = "Field" _ "\"" name:fieldName "\"" _ "DataType" _ dataType:dataType _ "Mandatory" _ mandatory:boolean _ "Hidden" _ hidden:boolean _ list:list? {
       return {
         name: name,
         dataType: dataType,
         mandatory: mandatory,
+        hidden: hidden,
         list: list || []
       };
     }
