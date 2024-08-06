@@ -1,0 +1,34 @@
+category Fields
+Field "SampleList"
+DisplayText "Sample List"
+DataType list
+Mandatory true
+Hidden false
+Value "null"
+List {
+  id1: "value1",
+  id2: "value2"
+}
+
+Field "SampleNumberField"
+DisplayText "Sample Number Field"
+DataType number
+Mandatory true
+Hidden false
+Value "calc1"
+
+Field "SampleTextField"
+DisplayText "Sample Text Field"
+DataType text
+Mandatory true
+Hidden false
+Value "calc2"
+
+endcategory
+
+category Calculations
+  Calculation "calc1"
+  Value "100"
+  Calculation "calc2"
+  Value "200"
+endcategory
