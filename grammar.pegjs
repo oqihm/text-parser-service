@@ -32,7 +32,7 @@ fieldList
     }
 
 field
-  = "Field" _ "\"" name:fieldName "\"" _ "DisplayText" _ displayText:quotedString _ "DataType" _ dataType:dataType _ "Mandatory" _ mandatory:boolean _ "Hidden" _ hidden:boolean _ "Value" _ "\"" value:fieldValue? "\""_ list:list? {
+  = "Field" _ "\"" name:fieldName "\"" _ "DisplayText" _ displayText:quotedString _ "DataType" _ dataType:dataType _ "Mandatory" _ mandatory:boolean _ "Hidden" _ hidden:boolean _ value:value? _ list:list? {
       return {
         name: name,
         displayText: displayText,
@@ -72,6 +72,11 @@ boolean
   / "false" {
       return false;
     }
+
+value 
+  = "Value" _ "\"" value:fieldValue? "\"" {
+    return value || "";
+  }
 
 list
   = "List" _ "{" _ items:listItemList _ "}" {
